@@ -1,0 +1,28 @@
+@media (max-width: 992px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: fixed;
+    z-index: 40;
+    width: 270px;
+    left: 0;
+    top: 0;
+    transform: translateX(-102%);
+    transition: transform 0.25s;
+  }
+
+  .app.nav-open .sidebar {
+    transform: none;
+  }
+
+  .sidebar__logo .sidebar-close,
+  .icon-btn.menu-btn {
+    display: block;
+  }
+
+  .app.nav-open .backdrop {
+    display: block;
+  }
+}

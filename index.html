@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finora Finance</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <link rel="stylesheet" href="./css/responsive.css" />
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar__logo">
+        <span class="logo-icon">F</span>
+        <span class="logo-text">Finora<em>Finance</em></span>
+        <button class="icon-btn sidebar-close" id="sidebarClose" aria-label="Close navigation"
+          fdprocessedid="ida8nj">✕</button>
+      </div>
+
+      <nav class="sidebar__nav" aria-label="Main navigation">
+        <ul>
+          <li>
+            <a href="#" class="nav-item active">
+              <span class="nav-icon">⌂</span>
+              <span>Overview</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-item">
+              <span class="nav-icon">◈</span>
+              <span>Portfolio</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-item">
+              <span class="nav-icon">↗</span>
+              <span>Investments</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-item">
+              <span class="nav-icon">⇄</span>
+              <span>Transactions</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-item">
+              <span class="nav-icon">♙</span>
+              <span>Clients</span>
+            </a>
+
+          </li>
+          <li>
+            <a href="#" class="nav-item">
+              <span class="nav-icon">▥</span>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-item">
+              <span class="nav-icon">⚙</span>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    <div class="backdrop" id="backdrop" hidden=""></div>
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <h1 class="page-title" id="pageTitle">Overview</h1>
+
+        <form class="search" role="search" id="globalSearchForm">
+          <label class="sr-only" for="globalSearch">Search transactions and clients</label>
+          <span class="search-ico" aria-hidden="true">⌕</span>
+          <input id="globalSearch" type="search" placeholder="Search  ( / )" autocomplete="off">
+        </form>
+
+        <button class="icon-btn" id="themeBtn" aria-label="Switch theme" aria-pressed="true"
+          fdprocessedid="7rlft8"><span id="themeIcon">☀</span></button>
+
+        <div class="pop-wrap">
+          <button class="icon-btn" id="notifBtn" aria-label="Notifications" aria-expanded="false"
+            aria-controls="notifPanel" fdprocessedid="bd61ii">
+            🔔<span class="badge" id="notifBadge">1</span>
+          </button>
+          <section class="panel notif-panel" id="notifPanel" hidden="" aria-label="Notifications">
+            <header class="panel-head">
+              <h2>Notifications</h2>
+              <button class="link-btn" id="markAllRead">Mark all as read</button>
+            </header>
+            <ul class="notif-list" id="notifList">
+              <li class="notif " data-id="n2">
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <p>Investment transaction TXN-90014 completed successfully</p><time
+                    datetime="2026-08-12T16:02:25.482Z">1h
+                    ago</time>
+                </div>
+                <span class="notif-actions">
+
+                  <button data-act="del" aria-label="Delete notification">✕</button>
+                </span>
+              </li>
+              <li class="notif unread" data-id="n3">
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <p>Client KYC requires review — Devansh Patel</p><time datetime="2026-08-12T13:44:25.482Z">3h
+                    ago</time>
+                </div>
+                <span class="notif-actions">
+                  <button data-act="read" aria-label="Mark as read">✓</button>
+                  <button data-act="del" aria-label="Delete notification">✕</button>
+                </span>
+              </li>
+              <li class="notif " data-id="n4">
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <p>Monthly financial report for June has been generated</p><time
+                    datetime="2026-08-12T05:14:25.482Z">12h
+                    ago</time>
+                </div>
+                <span class="notif-actions">
+
+                  <button data-act="del" aria-label="Delete notification">✕</button>
+                </span>
+              </li>
+              <li class="notif " data-id="n5">
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <p>High-risk portfolio alert: exposure above 65% in equity</p><time
+                    datetime="2026-08-11T15:54:25.482Z">1d
+                    ago</time>
+                </div>
+                <span class="notif-actions">
+
+                  <button data-act="del" aria-label="Delete notification">✕</button>
+                </span>
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="pop-wrap">
+          <button class="profile-btn" id="profileBtn" aria-expanded="false" aria-controls="profileMenu"
+            fdprocessedid="n8vacc">
+            <img src="https://i.pravatar.cc/80?img=15" alt="" width="34" height="34">
+            <span class="profile-meta"><strong>A. Mehta</strong></span>
+          </button>
+          <div class="panel menu" id="profileMenu" hidden="" role="menu" aria-label="Profile">
+            <button role="menuitem">My Profile</button>
+            <button role="menuitem">Account Settings</button>
+            <button role="menuitem">Security</button>
+            <hr>
+            <button role="menuitem" class="danger" id="logoutBtn">Logout</button>
+          </div>
+        </div>
+      </header>
+      <main class="dashboard">
+        <div class="kpi-grid" id="kpiGrid">
+          <article class="kpi" style="animation-delay:0ms">
+            <span class="ico" aria-hidden="true">₹</span>
+            <h3>Total Portfolio Value</h3>
+            <p class="val" data-val="248000000" title="₹24,80,00,000">₹24.8 Cr</p>
+            <span class="delta up">▲ +12.5%</span>
+            <span class="cmp">vs ₹22 Cr last month</span>
+          </article>
+          <article class="kpi" style="animation-delay:70ms">
+            <span class="ico" aria-hidden="true">⬗</span>
+            <h3>Total Investment</h3>
+            <p class="val" data-val="182000000" title="₹18,20,00,000">₹18.2 Cr</p>
+            <span class="delta up">▲ +8.4%</span>
+            <span class="cmp">vs ₹16.8 Cr last month</span>
+          </article>
+          <article class="kpi" style="animation-delay:140ms">
+            <span class="ico" aria-hidden="true">↗</span>
+            <h3>Monthly Revenue</h3>
+            <p class="val" data-val="14200000" title="₹1,42,00,000">₹1.42 Cr</p>
+            <span class="delta up">▲ +6.8%</span>
+            <span class="cmp">vs ₹1.32 Cr last month</span>
+          </article>
+          <article class="kpi" style="animation-delay:210ms">
+            <span class="ico" aria-hidden="true">↘</span>
+            <h3>Monthly Expenses</h3>
+            <p class="val" data-val="4850000" title="₹48,50,000">₹48.5 L</p>
+            <span class="delta down">▼ -3.2%</span>
+            <span class="cmp">vs ₹52 L last month</span>
+          </article>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+
+</html>
