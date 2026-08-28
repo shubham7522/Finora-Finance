@@ -279,6 +279,84 @@ nav li.active a {
   gap: var(--gap);
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 }
+/* Primary Cards */
+
+.kpi {
+  position: relative;
+  overflow: hidden;
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.22s,
+    border-color 0.22s;
+  animation: rise 0.5s both;
+}
+
+.kpi .ico {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-size: 17px;
+}
+
+.kpi h3 {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 14px 0 4px;
+}
+
+.kpi .val {
+  font-family: var(--display);
+  font-size: 27px;
+  font-weight: 700;
+}
+.kpi .delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 99px;
+}
+.delta.up {
+  color: var(--pos);
+  background: color-mix(in oklab, var(--pos) 15%, transparent);
+}
+.delta.down {
+  color: var(--neg);
+  background: color-mix(in oklab, var(--neg) 15%, transparent);
+}
+.kpi .cmp {
+  display: block;
+  color: var(--muted);
+  font-size: 11.5px;
+  margin-top: 8px;
+}
+.kpi::after {
+  content: "";
+  position: absolute;
+  inset: auto -30% -60% auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--brand) 22%, transparent),
+    transparent 70%
+  );
+}
 
 /* Chart Section */
 
@@ -300,7 +378,7 @@ nav li.active a {
   align-items: flex-end;
   justify-content: space-between;
   gap: 14px;
-  padding: 18px 18px 12px;
+  padding: 18px;
   flex-wrap: wrap;
 }
 .seg {
@@ -356,12 +434,7 @@ nav li.active a {
   background: var(--gold);
 }
 
-canvas {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 18px 18px 10px 18px;
-  flex-wrap: wrap;
-  width: 100%;
+
+.chart-container{
+  padding:25px;
 }
