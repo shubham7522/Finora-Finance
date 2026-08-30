@@ -238,6 +238,17 @@ nav li.active a {
   padding: 10px 12px 10px 34px;
 }
 
+#globalSearch {
+  padding-left: 34px;
+}
+
+.search-ico {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+}
 .icon-btn {
   position: relative;
   display: flex;
@@ -497,6 +508,12 @@ nav li.active a {
   font-weight: 600;
   color: var(--muted);
 }
+.seg button:active,
+.seg button:focus {
+  background: var(--brand);
+  color: #fff;
+}
+
 .seg button.is-active {
   background: var(--brand);
   color: #fff;
@@ -532,9 +549,44 @@ nav li.active a {
 }
 /* Canvas */
 .chart-container {
-  padding: 25px;
+  position: relative;
+  width: 100%;
+  height: 300px;
 }
 
+#line-chart {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#tooltip {
+  display: none;
+
+  position: absolute;
+
+  background: white;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+
+  font-family: Arial, sans-serif;
+
+  pointer-events: none;
+
+  white-space: nowrap;
+
+  z-index: 10;
+}
+
+.tooltip-label {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #667085;
+}
 /* End of Canvas */
 /* Table Section */
 .card-head {

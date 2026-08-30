@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Finora Finance</title>
   <link rel="stylesheet" href="./css/style.css" />
-  <link rel="stylesheet" href="./css/components.css" />
   <link rel="stylesheet" href="./css/responsive.css" />
 </head>
 
@@ -193,18 +192,23 @@
         </div>
         <section class="charts" aria-label="Performance charts">
           <article class="card chart-card">
-            <header class="card-head">
+            <div class="card-head">
               <div>
                 <h2>Portfolio Performance</h2>
                 <p class="muted" id="perfSub">Growth of assets under management</p>
               </div>
               <div class="seg" role="group" aria-label="Chart period">
-                <button data-range="1M" fdprocessedid="rdnd3q">1M</button>
-                <button data-range="3M" fdprocessedid="khmuti">3M</button>
-                <button data-range="6M" class="is-active" aria-pressed="true" fdprocessedid="acrjp4">6M</button>
-                <button data-range="1Y" fdprocessedid="tew909">1Y</button>
+                <button data-range="1M" id="btn1M">1M</button>
+                <button data-range="3M" id="btn3M">3M</button>
+                <button data-range="6M" id="btn6M">6M</button>
+                <button class="is-active" data-range="1Y" id="btn1Y">1Y</button>
               </div>
-            </header>
+              </d>
+              <div class="chart-container">
+                <canvas id="line-chart"></canvas>
+                <div id="tooltip" class="tooltip"></div>
+              </div>
+
           </article>
 
           <article class="card chart-card">
@@ -220,7 +224,7 @@
 
             </header>
             <div class="chart-container">
-              <canvas id="bar-chart" width="600" height="200"></canvas>
+              <canvas id="bar-chart"></canvas>
             </div>
 
           </article>
