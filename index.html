@@ -217,13 +217,341 @@
                 <li><i class="sw sw-rev"></i>Revenue</li>
                 <li><i class="sw sw-exp"></i>Expenses</li>
               </ul>
-              
+
             </header>
             <div class="chart-container">
-              <canvas id="bar-chart"  width="600" height="200"></canvas>
+              <canvas id="bar-chart" width="600" height="200"></canvas>
             </div>
 
           </article>
+        </section>
+        <section class="card table-card">
+          <div class="card-head">
+            <div>
+              <h2 id="txHead">Recent Transactions</h2>
+              <p class="muted" id="txCount">28 of 28 transactions</p>
+            </div>
+            <div class="head-actions">
+              <button class="btn ghost" id="exportCsv">Export CSV</button>
+              <button class="btn ghost" id="genTx">Generate</button>
+            </div>
+          </div>
+          <div class="filters" role="group" aria-label="Transaction filters">
+            <label>Search<input type="search" id="txSearch" placeholder="ID, client, account"></label>
+            <label>Type<select id="txType">
+                <option>All</option>
+                <option>Investment</option>
+                <option>Withdrawal</option>
+                <option>Dividend</option>
+                <option>Fund Transfer</option>
+                <option>Management Fee</option>
+              </select></label>
+            <label>Status<select id="txStatus">
+                <option>All</option>
+                <option>Completed</option>
+                <option>Pending</option>
+                <option>Failed</option>
+              </select></label>
+            <label>From<input type="date" id="txFrom"></label>
+            <label>To<input type="date" id="txTo"></label>
+            <label>Min ₹<input type="number" id="txMin" min="0" step="10000" placeholder="0"></label>
+            <label>Max ₹<input type="number" id="txMax" min="0" step="10000" placeholder="Any"></label>
+            <button class="btn ghost" id="txReset">Reset</button>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table" id="txTable">
+              <caption class="sr-only">Recent financial transactions, sortable and paginated</caption>
+              <thead>
+                <tr>
+                  <th scope="col"><button class="sort" data-key="id">Txn ID</button></th>
+                  <th scope="col"><button class="sort" data-key="client">Client</button></th>
+                  <th scope="col">Account</th>
+                  <th scope="col"><button class="sort" data-key="type">Type</button></th>
+                  <th scope="col"><button class="sort" data-key="date">Date</button></th>
+                  <th scope="col" class="num"><button class="sort" data-key="amount">Amount</button></th>
+                  <th scope="col">Method</th>
+                  <th scope="col"><button class="sort" data-key="status">Status</button></th>
+                </tr>
+              </thead>
+              <tbody id="txBody">
+                <tr>
+                  <td>TXN-90001</td>
+                  <td>Vikram Rao</td>
+                  <td>XXXX4189</td>
+                  <td>Management Fee</td>
+                  <td>08 Jul 2026</td>
+                  <td class="num" title="₹2,70,000">₹2.7 L</td>
+                  <td>NEFT</td>
+                  <td><span class="pill completed">Completed</span></td>
+                </tr>
+                <tr>
+                  <td>TXN-90028</td>
+                  <td>Tara Bhatia</td>
+                  <td>XXXX6989</td>
+                  <td>Investment</td>
+                  <td>16 Jun 2026</td>
+                  <td class="num" title="₹37,06,000">₹37.1 L</td>
+                  <td>Cheque</td>
+                  <td><span class="pill completed">Completed</span></td>
+                </tr>
+                <tr>
+                  <td>TXN-90018</td>
+                  <td>Priya Menon</td>
+                  <td>XXXX3650</td>
+                  <td>Management Fee</td>
+                  <td>31 May 2026</td>
+                  <td class="num" title="₹1,25,000">₹1.25 L</td>
+                  <td>Cheque</td>
+                  <td><span class="pill completed">Completed</span></td>
+                </tr>
+                <tr>
+                  <td>TXN-90020</td>
+                  <td>Nikhil Verma</td>
+                  <td>XXXX9942</td>
+                  <td>Investment</td>
+                  <td>31 May 2026</td>
+                  <td class="num" title="₹76,10,000">₹76.1 L</td>
+                  <td>NEFT</td>
+                  <td><span class="pill completed">Completed</span></td>
+                </tr>
+                <tr>
+                  <td>TXN-90021</td>
+                  <td>Rohan Kapoor</td>
+                  <td>XXXX1694</td>
+                  <td>Management Fee</td>
+                  <td>23 May 2026</td>
+                  <td class="num" title="₹1,97,000">₹1.97 L</td>
+                  <td>NEFT</td>
+                  <td><span class="pill completed">Completed</span></td>
+                </tr>
+                <tr>
+                  <td>TXN-90022</td>
+                  <td>Rohan Kapoor</td>
+                  <td>XXXX9460</td>
+                  <td>Fund Transfer</td>
+                  <td>13 May 2026</td>
+                  <td class="num" title="₹33,87,000">₹33.9 L</td>
+                  <td>Net Banking</td>
+                  <td><span class="pill completed">Completed</span></td>
+                </tr>
+                <tr>
+                  <td>TXN-90023</td>
+                  <td>Aarav Sharma</td>
+                  <td>XXXX9762</td>
+                  <td>Management Fee</td>
+                  <td>07 May 2026</td>
+                  <td class="num" title="₹3,38,000">₹3.38 L</td>
+                  <td>Cheque</td>
+                  <td><span class="pill pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>TXN-90013</td>
+                  <td>Sanya Deshpande</td>
+                  <td>XXXX4268</td>
+                  <td>Withdrawal</td>
+                  <td>06 May 2026</td>
+                  <td class="num" title="₹60,25,000">₹60.3 L</td>
+                  <td>Cheque</td>
+                  <td><span class="pill completed">Completed</span></td>
+                </tr>
+                <tr>
+                  <td>TXN-90012</td>
+                  <td>Devansh Patel</td>
+                  <td>XXXX9931</td>
+                  <td>Management Fee</td>
+                  <td>04 May 2026</td>
+                  <td class="num" title="₹1,04,000">₹1.04 L</td>
+                  <td>Cheque</td>
+                  <td><span class="pill pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>TXN-90004</td>
+                  <td>Tara Bhatia</td>
+                  <td>XXXX1237</td>
+                  <td>Dividend</td>
+                  <td>24 Apr 2026</td>
+                  <td class="num" title="₹21,61,000">₹21.6 L</td>
+                  <td>Cheque</td>
+                  <td><span class="pill completed">Completed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pager">
+            <label class="rows">Rows
+              <select id="txRows">
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+              </select>
+            </label>
+            <div class="pager-nav">
+              <button class="btn ghost" id="txPrev" disabled="">Prev</button>
+              <span id="txPageInfo" aria-live="polite">Page 1 of 3</span>
+              <button class="btn ghost" id="txNext">Next</button>
+            </div>
+          </div>
+        </section>
+        <section class="card table-card" aria-labelledby="clHead">
+          <header class="card-head">
+            <div>
+              <h2 id="clHead">Client Portfolios</h2>
+              <p class="muted">Select a client to view full detail</p>
+            </div>
+          </header>
+          <div class="filters" role="group" aria-label="Client filters">
+            <label>Search<input type="search" id="clSearch" placeholder="Client or ID"></label>
+            <label>Risk<select id="clRisk">
+                <option>All</option>
+                <option>Low</option>
+                <option>Moderate</option>
+                <option>High</option>
+              </select></label>
+            <label>Sort<select id="clSort">
+                <option value="value">Portfolio value</option>
+                <option value="returnPct">Return %</option>
+                <option value="name">Name</option>
+              </select></label>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table clickable" id="clTable">
+              <caption class="sr-only">Client portfolios</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Client ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col" class="num">Portfolio</th>
+                  <th scope="col" class="num">Invested</th>
+                  <th scope="col" class="num">Returns</th>
+                  <th scope="col" class="num">Return %</th>
+                  <th scope="col">Risk</th>
+                  <th scope="col">Last Activity</th>
+                </tr>
+              </thead>
+              <tbody id="clBody">
+                <tr tabindex="0" role="button" data-id="CLT-1001" aria-label="Open details for Aarav Sharma">
+                  <td>CLT-1001</td>
+                  <td>Aarav Sharma</td>
+                  <td class="num">₹4.62 Cr</td>
+                  <td class="num">₹3.4 Cr</td>
+                  <td class="num pos">₹1.22 Cr</td>
+                  <td class="num pos">+35.9%</td>
+                  <td><span class="pill high">High</span></td>
+                  <td>27 Jul 2026</td>
+                </tr>
+                <tr tabindex="0" role="button" data-id="CLT-1002" aria-label="Open details for Ishita Nair">
+                  <td>CLT-1002</td>
+                  <td>Ishita Nair</td>
+                  <td class="num">₹3.85 Cr</td>
+                  <td class="num">₹3.05 Cr</td>
+                  <td class="num pos">₹80 L</td>
+                  <td class="num pos">+26.2%</td>
+                  <td><span class="pill moderate">Moderate</span></td>
+                  <td>25 Jul 2026</td>
+                </tr>
+                <tr tabindex="0" role="button" data-id="CLT-1003" aria-label="Open details for Rohan Kapoor">
+                  <td>CLT-1003</td>
+                  <td>Rohan Kapoor</td>
+                  <td class="num">₹2.94 Cr</td>
+                  <td class="num">₹2.35 Cr</td>
+                  <td class="num pos">₹59 L</td>
+                  <td class="num pos">+25.1%</td>
+                  <td><span class="pill low">Low</span></td>
+                  <td>23 Jul 2026</td>
+                </tr>
+                <tr tabindex="0" role="button" data-id="CLT-1004" aria-label="Open details for Meera Iyer">
+                  <td>CLT-1004</td>
+                  <td>Meera Iyer</td>
+                  <td class="num">₹2.48 Cr</td>
+                  <td class="num">₹1.92 Cr</td>
+                  <td class="num pos">₹56 L</td>
+                  <td class="num pos">+29.2%</td>
+                  <td><span class="pill moderate">Moderate</span></td>
+                  <td>21 Jul 2026</td>
+                </tr>
+                <tr tabindex="0" role="button" data-id="CLT-1005" aria-label="Open details for Kabir Malhotra">
+                  <td>CLT-1005</td>
+                  <td>Kabir Malhotra</td>
+                  <td class="num">₹2.1 Cr</td>
+                  <td class="num">₹1.68 Cr</td>
+                  <td class="num pos">₹42 L</td>
+                  <td class="num pos">+25.0%</td>
+                  <td><span class="pill high">High</span></td>
+                  <td>19 Jul 2026</td>
+                </tr>
+                <tr tabindex="0" role="button" data-id="CLT-1006" aria-label="Open details for Sanya Deshpande">
+                  <td>CLT-1006</td>
+                  <td>Sanya Deshpande</td>
+                  <td class="num">₹1.84 Cr</td>
+                  <td class="num">₹1.5 Cr</td>
+                  <td class="num pos">₹34 L</td>
+                  <td class="num pos">+22.7%</td>
+                  <td><span class="pill low">Low</span></td>
+                  <td>17 Jul 2026</td>
+                </tr>
+                <tr tabindex="0" role="button" data-id="CLT-1007" aria-label="Open details for Vikram Rao">
+                  <td>CLT-1007</td>
+                  <td>Vikram Rao</td>
+                  <td class="num">₹1.62 Cr</td>
+                  <td class="num">₹1.28 Cr</td>
+                  <td class="num pos">₹34 L</td>
+                  <td class="num pos">+26.6%</td>
+                  <td><span class="pill moderate">Moderate</span></td>
+                  <td>15 Jul 2026</td>
+                </tr>
+                <tr tabindex="0" role="button" data-id="CLT-1008" aria-label="Open details for Ananya Ghosh">
+                  <td>CLT-1008</td>
+                  <td>Ananya Ghosh</td>
+                  <td class="num">₹1.35 Cr</td>
+                  <td class="num">₹1.1 Cr</td>
+                  <td class="num pos">₹25 L</td>
+                  <td class="num pos">+22.7%</td>
+                  <td><span class="pill low">Low</span></td>
+                  <td>13 Jul 2026</td>
+                </tr>
+                <tr tabindex="0" role="button" data-id="CLT-1009" aria-label="Open details for Devansh Patel">
+                  <td>CLT-1009</td>
+                  <td>Devansh Patel</td>
+                  <td class="num">₹1.18 Cr</td>
+                  <td class="num">₹98 L</td>
+                  <td class="num pos">₹20 L</td>
+                  <td class="num pos">+20.4%</td>
+                  <td><span class="pill high">High</span></td>
+                  <td>11 Jul 2026</td>
+                </tr>
+                <tr tabindex="0" role="button" data-id="CLT-1010" aria-label="Open details for Tara Bhatia">
+                  <td>CLT-1010</td>
+                  <td>Tara Bhatia</td>
+                  <td class="num">₹96 L</td>
+                  <td class="num">₹79 L</td>
+                  <td class="num pos">₹17 L</td>
+                  <td class="num pos">+21.5%</td>
+                  <td><span class="pill moderate">Moderate</span></td>
+                  <td>09 Jul 2026</td>
+                </tr>
+                <tr tabindex="0" role="button" data-id="CLT-1011" aria-label="Open details for Nikhil Verma">
+                  <td>CLT-1011</td>
+                  <td>Nikhil Verma</td>
+                  <td class="num">₹82 L</td>
+                  <td class="num">₹70 L</td>
+                  <td class="num pos">₹12 L</td>
+                  <td class="num pos">+17.1%</td>
+                  <td><span class="pill low">Low</span></td>
+                  <td>07 Jul 2026</td>
+                </tr>
+                <tr tabindex="0" role="button" data-id="CLT-1012" aria-label="Open details for Priya Menon">
+                  <td>CLT-1012</td>
+                  <td>Priya Menon</td>
+                  <td class="num">₹64 L</td>
+                  <td class="num">₹52 L</td>
+                  <td class="num pos">₹12 L</td>
+                  <td class="num pos">+23.1%</td>
+                  <td><span class="pill moderate">Moderate</span></td>
+                  <td>05 Jul 2026</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
       </main>
